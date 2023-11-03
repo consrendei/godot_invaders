@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://rju6hwx33xq4"]
+
+[ext_resource type="Texture2D" uid="uid://dampgrufc543w" path="res://assets/enemy_alan.png" id="1_tj834"]
+[ext_resource type="Script" path="res://elements/enemy/enemy.gd" id="1_xtpoi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0l0s"]
+atlas = ExtResource("1_tj834")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w78dj"]
+atlas = ExtResource("1_tj834")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awjbf"]
+atlas = ExtResource("1_tj834")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phohg"]
+atlas = ExtResource("1_tj834")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i018g"]
+atlas = ExtResource("1_tj834")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgtd6"]
+atlas = ExtResource("1_tj834")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e6dl2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0l0s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w78dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awjbf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phohg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i018g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgtd6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yoqol"]
+radius = 8.06226
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_xtpoi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_e6dl2")
+autoplay = "default"
+frame_progress = 0.000177284
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_yoqol")
+
+[node name="RayCastLeft" type="RayCast2D" parent="."]
+target_position = Vector2(-15, 0)
+
+[node name="RayCastRight" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
